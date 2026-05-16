@@ -134,7 +134,13 @@ add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
         include/Bilet.h
         src/Bilet.cpp
         include/Zbor.h
-        src/Zbor.cpp)
+        src/Zbor.cpp
+        include/Angajat.h
+        include/Pilot.h
+        include/InsotitorZbor.h
+        src/Angajat.cpp
+        src/Pilot.cpp
+        src/InsotitorZbor.cpp)
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
 # NOTE: RUN_SANITIZERS is optional, if it's not present it will default to true
