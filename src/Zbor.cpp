@@ -14,6 +14,6 @@ void Zbor::afisareZbor() const {
     std::cout << "\n====== ZBOR " << indicativ << " SPRE " << destinatie << " ======\n";
     std::cout << "Numar de bilete vandute: " << listaBilete.size() << "\n\n";
     for (const Bilet& b : listaBilete)
-        b.afisareDetalii();
+        std::cout << b << "\n";
     std::cout << "========================================\n";
 }
