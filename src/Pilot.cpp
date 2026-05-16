@@ -10,3 +10,7 @@ void Pilot::afisareRol() const {
     std::cout << "[Pilot] " << nume << " (ID: " << idAngajat 
               << ") zboara pe " << tipAvion << " si are " << oreZbor << " ore de zbor.\n";
 }
+
+void Pilot::anuntaDecolare() const {
+    std::cout << ">>> Pilotul " << nume << " anunta: Pregatiti-va de decolare!\n";
+}

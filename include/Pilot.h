@@ -11,6 +11,7 @@ private:
 public:
     Pilot(const std::string& nume, int id, const std::string& avion, int ore);
     void afisareRol() const override;
+    void anuntaDecolare() const;
 };
 
 #endif

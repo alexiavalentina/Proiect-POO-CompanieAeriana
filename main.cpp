@@ -4,27 +4,39 @@
 #include "Zbor.h"
 #include "Pilot.h"
 #include "InsotitorZbor.h"
+#include "Exceptii.h"
 
 int main() {
     std::cout << "--- Sistem Gestiune Companie Aeriana ---\n\n";
     Pilot pilot1("Marian Popescu", 101, "Boeing 737", 5200);
     InsotitorZbor insotitor1("Ioana Radu", 202, "Business Class");
-    InsotitorZbor insotitor2("Andrei Vasile", 203, "Economic Class");
     std::vector<Angajat*> echipajZbor;
     echipajZbor.push_back(&pilot1);
     echipajZbor.push_back(&insotitor1);
-    echipajZbor.push_back(&insotitor2);
-    std::cout << "--- Echipaj Curent ---\n";
-    for (Angajat* angajat : echipajZbor)
-        angajat->afisareRol();
-    std::cout << "----------------------\n\n";
-    Zbor zborParis("Paris", "RO-301");
+    std::cout << "--- BAREM: Downcast ---\n";
+    for (Angajat* angajat : echipajZbor) {
+        Pilot* posibilPilot = dynamic_cast<Pilot*>(angajat);
+        if (posibilPilot != nullptr) {
+            posibilPilot->anuntaDecolare();
+        }
+    }
+    std::cout << "-----------------------\n\n";
+    Zbor zborParis("Paris", "RO-301", 1);
     Bilet bilet1("Popescu Ion", "Economic", 850.0, 14);
     Bilet bilet2("Ionescu Maria", "Business", 2100.0, 1);
-    Bilet bilet1CuTaxa = bilet1 + 150.0;
-    zborParis.adaugaBilet(bilet1CuTaxa);
-    zborParis.adaugaBilet(bilet2);
-    zborParis.afisareZbor();
+    std::cout << "--- BAREM: Tratarea Exceptiilor ---\n";
+    try {
+        std::cout << "Incercam sa adaugam primul bilet...\n";
+        zborParis.adaugaBilet(bilet1);
+        std::cout << "Bilet 1 adaugat cu succes!\n";
+        std::cout << "Incercam sa adaugam al doilea bilet...\n";
+        zborParis.adaugaBilet(bilet2);
+        std::cout << "Acest text nu va fi afisat niciodata.\n";
+    }
+    catch (const ExceptieCompanie& e) {
+        std::cerr << "EROARE PRINSA: " << e.what() << "\n";
+    }
+    std::cout << "-----------------------------------\n";
 
     return 0;
 }

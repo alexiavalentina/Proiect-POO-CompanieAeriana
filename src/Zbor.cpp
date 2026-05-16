@@ -1,12 +1,16 @@
 #include "Zbor.h"
 #include <iostream>
 
-Zbor::Zbor(const std::string& dest, const std::string& ind) {
+Zbor::Zbor(const std::string& dest, const std::string& ind, int capacitate) {
     this->destinatie = dest;
     this->indicativ = ind;
+    this->capacitateMax = capacitate;
 }
 
 void Zbor::adaugaBilet(const Bilet& bilet) {
+    if (listaBilete.size() >= capacitateMax) {
+        throw ExceptieCapacitate("Nu mai sunt locuri pe zborul " + indicativ + "!");
+    }
     listaBilete.push_back(bilet);
 }
 
