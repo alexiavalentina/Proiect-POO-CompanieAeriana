@@ -6,23 +6,21 @@
 #include "Pilot.h"
 #include "InsotitorZbor.h"
 #include "Exceptii.h"
+#include "ManagerCompanie.h" // Includem Singleton-ul
+#include "AngajatFactory.h"   // Includem Fabrica
 #include "Registru.h"
 
 int main() {
-    std::cout << "--- Sistem Gestiune Companie Aeriana ---\n\n";
-    Pilot pilot1("Marian Popescu", 101, "Boeing 737", 5200);
-    InsotitorZbor insotitor1("Ioana Radu", 202, "Business Class");
+    ManagerCompanie* manager = ManagerCompanie::getInstanta();
+    manager->anuntaIncepereaZilei();
     std::vector<Angajat*> echipajZbor;
-    echipajZbor.push_back(&pilot1);
-    echipajZbor.push_back(&insotitor1);
-    std::cout << "--- BAREM: Downcast ---\n";
+    echipajZbor.push_back(AngajatFactory::creazaAngajat("Pilot", "Marian Popescu", 101, "Boeing 737"));
+    echipajZbor.push_back(AngajatFactory::creazaAngajat("Insotitor", "Ioana Radu", 202, "Business Class"));
     for (Angajat* angajat : echipajZbor) {
         Pilot* posibilPilot = dynamic_cast<Pilot*>(angajat);
-        if (posibilPilot != nullptr) {
+        if (posibilPilot != nullptr)
             posibilPilot->anuntaDecolare();
-        }
     }
-    std::cout << "-----------------------\n\n";
     Zbor zborParis("Paris", "RO-301", 1);
     Bilet bilet1("Popescu Ion", "Economic", 850.0, 14);
     Bilet bilet2("Ionescu Maria", "Business", 2100.0, 1);
@@ -33,12 +31,20 @@ int main() {
     zborurileZilei.push_back(zborParis);
     zborurileZilei.push_back(zborLondra);
     std::cout << "\n--- TOATE ZBORURILE COMPANIEI DE AZI ---\n";
-    for (const Zbor& z : zborurileZilei) {
+    for (const Zbor& z : zborurileZilei)
         z.afisareZbor();
-    }
     std::cout << "\nStatistica: Compania a emis in total "
               << Bilet::getNumarTotalBileteEmise() << " bilete.\n";
-    std::cout << "--- BAREM: Tratarea Exceptiilor ---\n";
+    Registru<Bilet> registruBilete;
+    registruBilete.adauga(bilet1);
+    registruBilete.adauga(bilet3);
+    std::cout << "Registru de Bilete:\n";
+    registruBilete.afiseazaTot();
+    Registru<std::string> registruNotificari;
+    registruNotificari.adauga("Notificare 1: Zborul spre Paris are intarziere.");
+    registruNotificari.adauga("Notificare 2: Pilotul Popescu a intrat in tura.");
+    std::cout << "\nRegistru de Notificari:\n";
+    registruNotificari.afiseazaTot();
     try {
         std::cout << "Incercam sa adaugam primul bilet...\n";
         zborParis.adaugaBilet(bilet1);
@@ -50,16 +56,9 @@ int main() {
     catch (const ExceptieCompanie& e) {
         std::cerr << "EROARE PRINSA: " << e.what() << "\n";
     }
-    Registru<Bilet> registruBilete;
-    registruBilete.adauga(bilet1);
-    registruBilete.adauga(bilet3);
-    std::cout << "Registru de Bilete:\n";
-    registruBilete.afiseazaTot();
-    Registru<std::string> registruNotificari;
-    registruNotificari.adauga("Notificare 1: Zborul spre Paris are intarziere.");
-    registruNotificari.adauga("Notificare 2: Pilotul Popescu a intrat in tura.");
-    std::cout << "\nRegistru de Notificari:\n";
-    registruNotificari.afiseazaTot();
+    for (Angajat* angajat : echipajZbor)
+        delete angajat;
+    echipajZbor.clear();
 
     return 0;
 }
