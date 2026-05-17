@@ -6,6 +6,7 @@
 #include "Pilot.h"
 #include "InsotitorZbor.h"
 #include "Exceptii.h"
+#include "Registru.h"
 
 int main() {
     std::cout << "--- Sistem Gestiune Companie Aeriana ---\n\n";
@@ -49,7 +50,16 @@ int main() {
     catch (const ExceptieCompanie& e) {
         std::cerr << "EROARE PRINSA: " << e.what() << "\n";
     }
-    std::cout << "-----------------------------------\n";
+    Registru<Bilet> registruBilete;
+    registruBilete.adauga(bilet1);
+    registruBilete.adauga(bilet3);
+    std::cout << "Registru de Bilete:\n";
+    registruBilete.afiseazaTot();
+    Registru<std::string> registruNotificari;
+    registruNotificari.adauga("Notificare 1: Zborul spre Paris are intarziere.");
+    registruNotificari.adauga("Notificare 2: Pilotul Popescu a intrat in tura.");
+    std::cout << "\nRegistru de Notificari:\n";
+    registruNotificari.afiseazaTot();
 
     return 0;
 }
