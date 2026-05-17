@@ -56,6 +56,37 @@ int main() {
     catch (const ExceptieCompanie& e) {
         std::cerr << "EROARE PRINSA: " << e.what() << "\n";
     }
+    std::cout << "\n=======================================\n";
+    std::cout << "       PORNIRE MENIU INTERACTIV        \n";
+    std::cout << "=======================================\n";
+    int optiune = -1;
+    Zbor zborMeniu("Bucuresti", "RO-999", 50);
+    while (optiune != 0) {
+        std::cout << "\n1. Adauga Bilet in zbor (Citire de la tastatura)\n";
+        std::cout << "2. Afiseaza detaliile zborului\n";
+        std::cout << "3. Afiseaza numar total de bilete emise (Element static)\n";
+        std::cout << "0. Iesire\n";
+        std::cout << "Alegeti optiunea: ";
+        std::cin >> optiune;
+        if (optiune == 1) {
+            Bilet bNou;
+            std::cin >> bNou;
+            try {
+                zborMeniu.adaugaBilet(bNou);
+                std::cout << "Bilet adaugat cu succes in zborul RO-999!\n";
+            } catch (const ExceptieCompanie& e) {
+                std::cerr << "EROARE LA ADAUGARE: " << e.what() << "\n";
+            }
+        }
+        else if (optiune == 2)
+            zborMeniu.afisareZbor();
+        else if (optiune == 3)
+            std::cout << "Pana acum, compania a emis: " << Bilet::getNumarTotalBileteEmise() << " bilete.\n";
+        else if (optiune == 0)
+            std::cout << "Sistemul se inchide. La revedere!\n";
+        else
+            std::cout << "Optiune invalida!\n";
+    }
     for (Angajat* angajat : echipajZbor)
         delete angajat;
     echipajZbor.clear();
