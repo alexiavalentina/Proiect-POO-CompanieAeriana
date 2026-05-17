@@ -1,5 +1,6 @@
 #include "Zbor.h"
 #include <iostream>
+#include <algorithm>
 
 Zbor::Zbor(const std::string& dest, const std::string& ind, int capacitate) {
     this->destinatie = dest;
@@ -17,7 +18,11 @@ void Zbor::adaugaBilet(const Bilet& bilet) {
 void Zbor::afisareZbor() const {
     std::cout << "\n====== ZBOR " << indicativ << " SPRE " << destinatie << " ======\n";
     std::cout << "Numar de bilete vandute: " << listaBilete.size() << "\n\n";
-    for (const Bilet& b : listaBilete)
+    std::vector<Bilet> copieBilete = listaBilete;
+    std::sort(copieBilete.begin(), copieBilete.end(), [](const Bilet& a, const Bilet& b) {
+        return a.getPret() > b.getPret();
+    });
+    for (const Bilet& b : copieBilete)
         std::cout << b << "\n";
     std::cout << "========================================\n";
 }

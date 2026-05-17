@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <list>
 #include "Bilet.h"
 #include "Zbor.h"
 #include "Pilot.h"
@@ -24,6 +25,18 @@ int main() {
     Zbor zborParis("Paris", "RO-301", 1);
     Bilet bilet1("Popescu Ion", "Economic", 850.0, 14);
     Bilet bilet2("Ionescu Maria", "Business", 2100.0, 1);
+    Zbor zborLondra("Londra", "RO-404", 150);
+    Bilet bilet3("Gheorghe Vasile", "Economic", 400.0, 30);
+    zborLondra.adaugaBilet(bilet3);
+    std::list<Zbor> zborurileZilei;
+    zborurileZilei.push_back(zborParis);
+    zborurileZilei.push_back(zborLondra);
+    std::cout << "\n--- TOATE ZBORURILE COMPANIEI DE AZI ---\n";
+    for (const Zbor& z : zborurileZilei) {
+        z.afisareZbor();
+    }
+    std::cout << "\nStatistica: Compania a emis in total "
+              << Bilet::getNumarTotalBileteEmise() << " bilete.\n";
     std::cout << "--- BAREM: Tratarea Exceptiilor ---\n";
     try {
         std::cout << "Incercam sa adaugam primul bilet...\n";

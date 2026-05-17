@@ -6,6 +6,8 @@
 
 class Bilet {
 private:
+    int idBilet;
+    static int contorBilete;
     std::string numePasager;
     std::string clasaZbor;
     double pret;
@@ -15,6 +17,7 @@ public:
     Bilet();
     Bilet(const std::string& nume, const std::string& clasaZ, double pret, int loc);
     Bilet(const Bilet& other);
+    static int getNumarTotalBileteEmise();
     Bilet& operator=(const Bilet& other);
     ~Bilet();
     double getPret() const;

@@ -1,10 +1,14 @@
 #include "Bilet.h"
 
+int Bilet::contorBilete = 0;
+
 Bilet::Bilet() {
     numePasager = "Necunoscut";
     clasaZbor = "Economic";
     pret = 0.0;
     numarLoc = 0;
+    contorBilete++;
+    this->idBilet = contorBilete;
 }
 
 Bilet::Bilet(const std::string& nume, const std::string& clasaZ, double pret, int loc) {
@@ -12,9 +16,13 @@ Bilet::Bilet(const std::string& nume, const std::string& clasaZ, double pret, in
     this->clasaZbor = clasaZ;
     this->pret = pret;
     this->numarLoc = loc;
+    contorBilete++;
+    this->idBilet = contorBilete;
 }
 
 Bilet::Bilet(const Bilet& other) {
+    contorBilete++;
+    this->idBilet = contorBilete;
     this->numePasager = other.numePasager;
     this->clasaZbor = other.clasaZbor;
     this->pret = other.pret;
@@ -32,7 +40,7 @@ Bilet& Bilet::operator=(const Bilet& other) {
 }
 
 Bilet::~Bilet() {
-    // std::cout << "Bilet distrus!\n"; (opțional, doar pentru test)
+
 }
 
 double Bilet::getPret() const { return pret; }
@@ -43,7 +51,7 @@ bool Bilet::operator==(const Bilet& other) const {
 }
 
 std::ostream& operator<<(std::ostream& out, const Bilet& b) {
-    out << "Pasager: " << b.numePasager << " | Clasa: " << b.clasaZbor
+    out << "[ID: " << b.idBilet << "] " << "Pasager: " << b.numePasager << " | Clasa: " << b.clasaZbor
         << " | Loc: " << b.numarLoc << " | Pret: " << b.pret << " RON";
     return out;
 }
@@ -64,4 +72,8 @@ Bilet operator+(const Bilet& b, double taxa) {
     Bilet biletNou = b;
     biletNou.setPret(b.getPret() + taxa);
     return biletNou;
+}
+
+int Bilet::getNumarTotalBileteEmise() {
+    return contorBilete;
 }
