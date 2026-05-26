@@ -15,6 +15,7 @@ public:
     ManagerCompanie(const ManagerCompanie&) = delete;
     ManagerCompanie& operator=(const ManagerCompanie&) = delete;
     void anuntaIncepereaZilei() const;
+    static void distrugeInstanta();
 };
 
 #endif

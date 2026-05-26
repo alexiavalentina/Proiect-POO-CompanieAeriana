@@ -16,3 +16,10 @@ ManagerCompanie* ManagerCompanie::getInstanta() {
 void ManagerCompanie::anuntaIncepereaZilei() const {
     cout << ">>> Managerul companiei " << numeCompanie << " declara sistemul deschis! <<<\n\n";
 }
+
+void ManagerCompanie::distrugeInstanta() {
+    if (instanta != nullptr) {
+        delete instanta;
+        instanta = nullptr;
+    }
+}

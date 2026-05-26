@@ -90,6 +90,7 @@ int main() {
     for (Angajat* angajat : echipajZbor)
         delete angajat;
     echipajZbor.clear();
+    ManagerCompanie::distrugeInstanta();
 
     return 0;
 }
