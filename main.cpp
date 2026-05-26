@@ -95,6 +95,7 @@ int main()
         delete angajat;
     echipajZbor.clear();
     ManagerCompanie::distrugeInstanta();
+    // Trigger pentru GitHub Actions
 
     return 0;
 }
