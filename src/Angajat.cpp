@@ -1,8 +1,7 @@
 #include "Angajat.h"
+using namespace std;
 
-Angajat::Angajat(const std::string& nume, int id) {
-    this->nume = nume;
-    this->idAngajat = id;
+Angajat::Angajat(const string& nume, int id) : nume(nume), idAngajat(id) {
 }
 
 Angajat::~Angajat() {

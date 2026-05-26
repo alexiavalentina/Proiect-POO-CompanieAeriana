@@ -1,11 +1,12 @@
 #include "InsotitorZbor.h"
+#include <iostream>
+using namespace std;
 
-InsotitorZbor::InsotitorZbor(const std::string& nume, int id, const std::string& sector)
-    : Angajat(nume, id) {
-    this->sectorRepartizat = sector;
+InsotitorZbor::InsotitorZbor(const string& nume, int id, const string& sector)
+    : Angajat(nume, id), sectorRepartizat(sector) {
 }
 
 void InsotitorZbor::afisareRol() const {
-    std::cout << "[Insotitor Zbor] " << nume << " (ID: " << idAngajat 
-              << ") se ocupa de sectorul " << sectorRepartizat << ".\n";
+    cout << "[Insotitor Zbor] " << nume << " (ID: " << idAngajat
+         << ") se ocupa de sectorul " << sectorRepartizat << ".\n";
 }

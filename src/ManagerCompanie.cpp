@@ -1,9 +1,10 @@
 #include "ManagerCompanie.h"
+#include <iostream>
+using namespace std;
 
 ManagerCompanie* ManagerCompanie::instanta = nullptr;
 
-ManagerCompanie::ManagerCompanie() {
-    numeCompanie = "Air-OOP Romania";
+ManagerCompanie::ManagerCompanie() : numeCompanie("Air-OOP Romania") {
 }
 
 ManagerCompanie* ManagerCompanie::getInstanta() {
@@ -13,5 +14,5 @@ ManagerCompanie* ManagerCompanie::getInstanta() {
 }
 
 void ManagerCompanie::anuntaIncepereaZilei() const {
-    std::cout << ">>> Managerul companiei " << numeCompanie << " declara sistemul deschis! <<<\n\n";
+    cout << ">>> Managerul companiei " << numeCompanie << " declara sistemul deschis! <<<\n\n";
 }

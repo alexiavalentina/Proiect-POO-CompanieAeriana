@@ -2,31 +2,15 @@
 
 int Bilet::contorBilete = 0;
 
-Bilet::Bilet() {
-    numePasager = "Necunoscut";
-    clasaZbor = "Economic";
-    pret = 0.0;
-    numarLoc = 0;
-    contorBilete++;
-    this->idBilet = contorBilete;
+Bilet::Bilet() : numePasager("Necunoscut"), clasaZbor("Economic"), pret(0.0), numarLoc(0), idBilet(++contorBilete) {
 }
 
-Bilet::Bilet(const std::string& nume, const std::string& clasaZ, double pret, int loc) {
-    this->numePasager = nume;
-    this->clasaZbor = clasaZ;
-    this->pret = pret;
-    this->numarLoc = loc;
-    contorBilete++;
-    this->idBilet = contorBilete;
+Bilet::Bilet(const std::string& nume, const std::string& clasaZ, double pret, int loc)
+    : numePasager(nume), clasaZbor(clasaZ), pret(pret), numarLoc(loc), idBilet(++contorBilete) {
 }
 
-Bilet::Bilet(const Bilet& other) {
-    contorBilete++;
-    this->idBilet = contorBilete;
-    this->numePasager = other.numePasager;
-    this->clasaZbor = other.clasaZbor;
-    this->pret = other.pret;
-    this->numarLoc = other.numarLoc;
+Bilet::Bilet(const Bilet& other)
+    : numePasager(other.numePasager), clasaZbor(other.clasaZbor), pret(other.pret), numarLoc(other.numarLoc), idBilet(++contorBilete) {
 }
 
 Bilet& Bilet::operator=(const Bilet& other) {
@@ -40,7 +24,6 @@ Bilet& Bilet::operator=(const Bilet& other) {
 }
 
 Bilet::~Bilet() {
-
 }
 
 double Bilet::getPret() const { return pret; }

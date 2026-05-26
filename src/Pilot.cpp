@@ -1,16 +1,16 @@
 #include "Pilot.h"
+#include <iostream>
+using namespace std;
 
-Pilot::Pilot(const std::string& nume, int id, const std::string& avion, int ore)
-    : Angajat(nume, id) {
-    this->tipAvion = avion;
-    this->oreZbor = ore;
+Pilot::Pilot(const string& nume, int id, const string& avion, int ore)
+    : Angajat(nume, id), tipAvion(avion), oreZbor(ore) {
 }
 
 void Pilot::afisareRol() const {
-    std::cout << "[Pilot] " << nume << " (ID: " << idAngajat 
-              << ") zboara pe " << tipAvion << " si are " << oreZbor << " ore de zbor.\n";
+    cout << "[Pilot] " << nume << " (ID: " << idAngajat
+         << ") zboara pe " << tipAvion << " si are " << oreZbor << " ore de zbor.\n";
 }
 
 void Pilot::anuntaDecolare() const {
-    std::cout << ">>> Pilotul " << nume << " anunta: Pregatiti-va de decolare!\n";
+    cout << ">>> Pilotul " << nume << " anunta: Pregatiti-va de decolare!\n";
 }
