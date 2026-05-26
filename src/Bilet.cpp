@@ -15,6 +15,7 @@ Bilet::Bilet(const Bilet& other)
 
 Bilet& Bilet::operator=(const Bilet& other) {
     if (this != &other) {
+        this->idBilet = other.idBilet; // <-- ADUAGĂ ACEASTĂ LINIE
         this->numePasager = other.numePasager;
         this->clasaZbor = other.clasaZbor;
         this->pret = other.pret;

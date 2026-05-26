@@ -4,11 +4,11 @@
 using namespace std;
 
 Zbor::Zbor(const string& dest, const string& ind, int capacitate)
-    : destinatie(dest), indicativ(ind), capacitateMax(capacitate) {
+    : destinatie(dest), capacitateMax(capacitate), indicativ(ind) {
 }
 
 void Zbor::adaugaBilet(const Bilet& bilet) {
-    if (listaBilete.size() >= capacitateMax) {
+    if (listaBilete.size() >= static_cast<size_t>(capacitateMax)) {
         throw ExceptieCapacitate("Nu mai sunt locuri pe zborul " + indicativ + "!");
     }
     listaBilete.push_back(bilet);

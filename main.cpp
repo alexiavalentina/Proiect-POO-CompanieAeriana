@@ -10,7 +10,8 @@
 #include "AngajatFactory.h"   // Includem Fabrica
 #include "Registru.h"
 
-int main() {
+int main()
+{
     ManagerCompanie* manager = ManagerCompanie::getInstanta();
     manager->anuntaIncepereaZilei();
     std::vector<Angajat*> echipajZbor;
@@ -20,6 +21,9 @@ int main() {
         Pilot* posibilPilot = dynamic_cast<Pilot*>(angajat);
         if (posibilPilot != nullptr)
             posibilPilot->anuntaDecolare();
+        const InsotitorZbor* posibilInsotitor = dynamic_cast<const InsotitorZbor*>(angajat);
+        if (posibilInsotitor)
+            posibilInsotitor->afisareRol();
     }
     Zbor zborParis("Paris", "RO-301", 1);
     Bilet bilet1("Popescu Ion", "Economic", 850.0, 14);
