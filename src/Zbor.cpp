@@ -4,7 +4,7 @@
 using namespace std;
 
 Zbor::Zbor(const string& dest, const string& ind, int capacitate)
-    : destinatie(dest), capacitateMax(capacitate), indicativ(ind) {
+    : capacitateMax(capacitate), destinatie(dest), indicativ(ind) {
 }
 
 void Zbor::adaugaBilet(const Bilet& bilet) {
