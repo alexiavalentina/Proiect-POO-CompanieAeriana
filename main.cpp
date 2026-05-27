@@ -90,11 +90,8 @@ int main()
             zborMeniu.afisareZbor();
         else if (optiune == 3)
             cout << "Pana acum, compania a emis: " << Bilet::getNumarTotalBileteEmise() << " bilete.\n";
-        else if (optiune == 0) {
+        else if (optiune == 0)
             cout << "Sistemul se inchide. La revedere!\n";
-            for (int i = 0; i < echipajZbor.size(); i++)
-                delete echipajZbor[i];
-        }
         else
             cout << "Optiune invalida!\n";
     }
