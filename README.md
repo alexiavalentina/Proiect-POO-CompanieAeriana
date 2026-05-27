@@ -1,12 +1,30 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
+# ✈️ Air-OOP România - Sistem de Management Aerian
 
-### Folosiți template-ul corespunzător grupei voastre!
+**Descriere**
+Bine ai venit la bord! Ești managerul general al companiei aeriene Air-OOP România. Misiunea ta este să coordonezi zborurile zilnice, să gestionezi echipajul (piloți experimentați și însoțitori de zbor) și să te asiguri că biletele sunt vândute eficient, fără a depăși capacitatea aeronavelor. Ai grijă, un zbor supra-rezervat va declanșa o eroare critică în sistem!
 
-| Laborant  | Link template                                |
-|-----------|----------------------------------------------|
-| Dragoș B  | https://github.com/Ionnier/oop-template      |
-| Tiberiu M | https://github.com/MaximTiberiu/oop-template |
-| Marius MC | https://github.com/mcmarius/oop-template     |
+**Funcționalități**
+Meniu Interactiv — interfață în consolă care îți permite să adaugi bilete, să verifici zborurile și să vezi statistici în timp real.
+Sistem de Siguranță — sistemul previne supra-rezervarea (Overbooking) aruncând o excepție personalizată ExceptieCapacitate dacă încerci să vinzi bilete peste limita avionului.
+Gestiunea Echipajului — angajarea personalului se face automatizat printr-un AngajatFactory, iar conducerea este asigurată de un ManagerCompanie.
+Registre Universale — stocarea biletelor și a notificărilor se face prin clasa șablon Registru<T>.
+Sortare Inteligentă — la afișarea unui zbor, biletele sunt sortate descrescător în funcție de preț, folosind funcții lambda.
+Statistici Globale — urmărirea numărului total de bilete emise la nivel de companie folosind variabile și metode statice.
+
+**Instrucțiuni**
+Pentru a rula sistemul de management:
+-Compilează proiectul folosind CMake (sau rulează executabilul generat de IDE-ul tău).
+-Odată pornit, Managerul va declara sistemul deschis.
+-Urmărește meniul afișat în consolă și tastează numărul corespunzător acțiunii dorite (ex: 1 pentru a vinde un bilet nou).
+-Introdu datele cerute de sistem (Nume pasager, Clasă, Preț, Loc).
+
+**Stări de execuție (Exemple de Rulare)**
+*Sistem de Securitate - Capacitate Depășită:*
+<img width="770" height="261" alt="image" src="https://github.com/user-attachments/assets/45ecb18c-29c7-40bf-93a7-afdabb50de62" />
+
+
+*Meniul Principal și Zboruri cu Succes:*
+<img width="773" height="652" alt="image" src="https://github.com/user-attachments/assets/48cf21b2-2df0-4ed6-a61a-428378d30221" />
 
 ## Instrucțiuni de compilare
 
