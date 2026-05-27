@@ -6,19 +6,20 @@
 #include "Pilot.h"
 #include "InsotitorZbor.h"
 #include "Exceptii.h"
-#include "ManagerCompanie.h" // Includem Singleton-ul
-#include "AngajatFactory.h"   // Includem Fabrica
+#include "ManagerCompanie.h"
+#include "AngajatFactory.h"
 #include "Registru.h"
+using namespace std;
 
 int main()
 {
-    ManagerCompanie* manager = ManagerCompanie::getInstanta();
+    const ManagerCompanie* manager = ManagerCompanie::getInstanta();
     manager->anuntaIncepereaZilei();
-    std::vector<Angajat*> echipajZbor;
+    vector<Angajat*> echipajZbor;
     echipajZbor.push_back(AngajatFactory::creazaAngajat("Pilot", "Marian Popescu", 101, "Boeing 737"));
     echipajZbor.push_back(AngajatFactory::creazaAngajat("Insotitor", "Ioana Radu", 202, "Business Class"));
     for (Angajat* angajat : echipajZbor) {
-        Pilot* posibilPilot = dynamic_cast<Pilot*>(angajat);
+        const Pilot* posibilPilot = dynamic_cast<const Pilot*>(angajat);
         if (posibilPilot != nullptr)
             posibilPilot->anuntaDecolare();
         const InsotitorZbor* posibilInsotitor = dynamic_cast<const InsotitorZbor*>(angajat);
@@ -31,71 +32,69 @@ int main()
     Zbor zborLondra("Londra", "RO-404", 150);
     Bilet bilet3("Gheorghe Vasile", "Economic", 400.0, 30);
     zborLondra.adaugaBilet(bilet3);
-    std::list<Zbor> zborurileZilei;
+    list<Zbor> zborurileZilei;
     zborurileZilei.push_back(zborParis);
     zborurileZilei.push_back(zborLondra);
-    std::cout << "\n--- TOATE ZBORURILE COMPANIEI DE AZI ---\n";
+    cout << "\n--- TOATE ZBORURILE COMPANIEI DE AZI ---\n";
     for (const Zbor& z : zborurileZilei)
         z.afisareZbor();
-    std::cout << "\nStatistica: Compania a emis in total "
-              << Bilet::getNumarTotalBileteEmise() << " bilete.\n";
+    cout << "\nStatistica: Compania a emis in total "
+         << Bilet::getNumarTotalBileteEmise() << " bilete.\n";
     Registru<Bilet> registruBilete;
     registruBilete.adauga(bilet1);
     registruBilete.adauga(bilet3);
-    std::cout << "Registru de Bilete:\n";
+    cout << "Registru de Bilete:\n";
     registruBilete.afiseazaTot();
-    Registru<std::string> registruNotificari;
+    Registru <string> registruNotificari;
     registruNotificari.adauga("Notificare 1: Zborul spre Paris are intarziere.");
     registruNotificari.adauga("Notificare 2: Pilotul Popescu a intrat in tura.");
-    std::cout << "\nRegistru de Notificari:\n";
+    cout << "\nRegistru de Notificari:\n";
     registruNotificari.afiseazaTot();
     try {
-        std::cout << "Incercam sa adaugam primul bilet...\n";
+        cout << "Incercam sa adaugam primul bilet...\n";
         zborParis.adaugaBilet(bilet1);
-        std::cout << "Bilet 1 adaugat cu succes!\n";
-        std::cout << "Incercam sa adaugam al doilea bilet...\n";
+        cout << "Bilet 1 adaugat cu succes!\n";
+        cout << "Incercam sa adaugam al doilea bilet...\n";
         zborParis.adaugaBilet(bilet2);
-        std::cout << "Acest text nu va fi afisat niciodata.\n";
     }
     catch (const ExceptieCompanie& e) {
-        std::cerr << "EROARE PRINSA: " << e.what() << "\n";
+        cerr << "EROARE PRINSA: " << e.what() << "\n";
     }
-    std::cout << "\n=======================================\n";
-    std::cout << "       PORNIRE MENIU INTERACTIV        \n";
-    std::cout << "=======================================\n";
+    cout << "\n=======================================\n";
+    cout << "       PORNIRE MENIU INTERACTIV        \n";
+    cout << "=======================================\n";
     int optiune = -1;
     Zbor zborMeniu("Bucuresti", "RO-999", 50);
     while (optiune != 0) {
-        std::cout << "\n1. Adauga Bilet in zbor (Citire de la tastatura)\n";
-        std::cout << "2. Afiseaza detaliile zborului\n";
-        std::cout << "3. Afiseaza numar total de bilete emise (Element static)\n";
-        std::cout << "0. Iesire\n";
-        std::cout << "Alegeti optiunea: ";
-        std::cin >> optiune;
+        cout << "\n1. Adauga Bilet in zbor (Citire de la tastatura)\n";
+        cout << "2. Afiseaza detaliile zborului\n";
+        cout << "3. Afiseaza numar total de bilete emise (Element static)\n";
+        cout << "0. Iesire\n";
+        cout << "Alegeti optiunea: ";
+        cin >> optiune;
         if (optiune == 1) {
             Bilet bNou;
-            std::cin >> bNou;
+            cin >> bNou;
             try {
                 zborMeniu.adaugaBilet(bNou);
-                std::cout << "Bilet adaugat cu succes in zborul RO-999!\n";
+                cout << "Bilet adaugat cu succes in zborul RO-999!\n";
             } catch (const ExceptieCompanie& e) {
-                std::cerr << "EROARE LA ADAUGARE: " << e.what() << "\n";
+                cerr << "EROARE LA ADAUGARE: " << e.what() << "\n";
             }
         }
         else if (optiune == 2)
             zborMeniu.afisareZbor();
         else if (optiune == 3)
-            std::cout << "Pana acum, compania a emis: " << Bilet::getNumarTotalBileteEmise() << " bilete.\n";
+            cout << "Pana acum, compania a emis: " << Bilet::getNumarTotalBileteEmise() << " bilete.\n";
         else if (optiune == 0)
-            std::cout << "Sistemul se inchide. La revedere!\n";
+            cout << "Sistemul se inchide. La revedere!\n";
         else
-            std::cout << "Optiune invalida!\n";
+            cout << "Optiune invalida!\n";
     }
     for (Angajat* angajat : echipajZbor)
         delete angajat;
     echipajZbor.clear();
     ManagerCompanie::distrugeInstanta();
-    // Trigger pentru GitHub Actions
 
     return 0;
 }
