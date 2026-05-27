@@ -21,6 +21,8 @@ Pentru a rula sistemul de management:
 **Stări de execuție (Exemple de Rulare)**
 *Sistem de Securitate - Capacitate Depășită:*
 <img width="770" height="261" alt="image" src="https://github.com/user-attachments/assets/45ecb18c-29c7-40bf-93a7-afdabb50de62" />
+
+
 *Meniul Principal și Zboruri cu Succes:*
 <img width="773" height="652" alt="image" src="https://github.com/user-attachments/assets/48cf21b2-2df0-4ed6-a61a-428378d30221" />
 
