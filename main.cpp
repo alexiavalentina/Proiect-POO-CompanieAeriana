@@ -18,7 +18,7 @@ int main()
     vector<Angajat*> echipajZbor;
     echipajZbor.push_back(AngajatFactory::creazaAngajat("Pilot", "Marian Popescu", 101, "Boeing 737"));
     echipajZbor.push_back(AngajatFactory::creazaAngajat("Insotitor", "Ioana Radu", 202, "Business Class"));
-    for (Angajat* angajat : echipajZbor) {
+    for (const Angajat* angajat : echipajZbor) {
         const Pilot* posibilPilot = dynamic_cast<const Pilot*>(angajat);
         if (posibilPilot != nullptr)
             posibilPilot->anuntaDecolare();
@@ -58,7 +58,7 @@ int main()
         zborParis.adaugaBilet(bilet2);
     }
     catch (const ExceptieCompanie& e) {
-        cerr << "EROARE PRINSA: " << e.what() << "\n";
+        cout << "EROARE PRINSA: " << e.what() << "\n";
     }
     cout << "\n=======================================\n";
     cout << "       PORNIRE MENIU INTERACTIV        \n";
