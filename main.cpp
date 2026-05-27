@@ -72,6 +72,10 @@ int main()
         cout << "0. Iesire\n";
         cout << "Alegeti optiunea: ";
         cin >> optiune;
+        if (!(cin >> optiune)) {
+            cout << "Nu s-a putut citi optiunea. Iesire automata.\n";
+            break;
+        }
         if (optiune == 1) {
             Bilet bNou;
             cin >> bNou;
